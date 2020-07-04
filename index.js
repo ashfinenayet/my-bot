@@ -2,15 +2,23 @@ const Discord = require("discord.js")
 
 
 
-const randomPuppy = require('random-puppy');
-const fetch = require("node-fetch");
+
+
 const ytdl = require("ytdl-core");
 
 const client = new Discord.Client()
+const fs = require('fs')
+client.commands = new Discord.Collection();
+const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'))
+for(const file of commandFiles) {
+    const command = require(`./commands/${file}`);
 
+    client.commands.set(command.name, command);
+}
 var servers = {};
 const queue = new Map();
 client.on("ready", () => {
+    client.user.setActivity("You", {type: "WATCHING"})
     console.log(`Logged in as ${client.user.tag}!`);
 });
 
@@ -20,7 +28,7 @@ const prefix = "!";
 
 
 var sayings = new Array();
-sayings[0] = "";
+sayings[0] = "spaghetti";
 //insert as many saying as you like 
 client.on("message", (msg) => {
     if (!msg.content.startsWith(prefix) || msg.author.bot) return;
@@ -30,66 +38,9 @@ client.on("message", (msg) => {
 
 
     } else if (msg.content === "!meme") {
-        const subReddits = [
-            'blursedimages', 'cursedimages'
-        ];
-        const i = Math.floor(Math.random() * subReddits.length);
-        const randomSubreddit = subReddits[i];
-        randomPuppy(randomSubreddit)
-            .then((img) => {
-                const embed = new MessageEmbed()
-                    .setColor("RANDOM")
-                    .setImage(img)
-                    .setTitle("from /r/" + randomSubreddit)
-                    .setURL("https://reddit.com/r/" + randomSubreddit);
-                msg.channel.send(embed);
-            })
-            .catch(() => msg.reply("Could not find an image"));
-
-        //msg.reply(subReddits[e])
+       client.commands.get('meme').execute(msg);
     } else if (msg.content.startsWith("!weather")) {
-        let zipCode = msg.content.split(" ")[1];
-        if (
-            zipCode === undefined ||
-            zipCode.length != 5 ||
-            parseInt(zipCode) === NaN
-        ) {
-            return msg.channel
-                .send("The zipcode is incorrect. Try again with !weather (zipcode)")
-                .catch(console.error);
-        }
-        let url =
-            "http://api.openweathermap.org/data/2.5/weather?zip=" +
-            zipCode +
-            ",us&APPID=89788f412abb005a35dd260f88e56efd";
-
-        fetch(url, { method: "get" })
-            .then((response) => {
-                let parsedWeather = response
-                    .json()
-                    .then((x) => {
-                        return msg.channel.send(`
-            🎯The current weather
-              🏡 Location: ${x.name}, ${x.sys.country}
-              🌁 Forecast: ${x.weather[0].main}
-               🌡️ Current Temperature: ${Math.round(
-                            ((x.main.temp - 273.15) * 9) / 5 + 32
-                        )} °F
-               ⬆️  High Temperature: ${Math.round(
-                            ((x.main.temp_max - 273.15) * 9) / 5 + 32
-                        )} °F
-               ⬇️  Low Temperature: ${Math.round(
-                            ((x.main.temp_min - 273.15) * 9) / 5 + 32
-                        )} °F
-                `);
-                    })
-                    .catch((e) => {
-                        console.log("Error parsing JSON: " + e);
-                    });
-            })
-            .catch((e) => {
-                msg.channel.send("There was an error retrieving weather data: " + e);
-            });
+       client.commands.get('weather').execute(msg);
     }
 });
 
@@ -175,7 +126,7 @@ async function execute(message, serverQueue) {
 function skip(message, serverQueue) {
     if (!message.member.voice.channel)
         return message.channel.send(
-            "You have to be in a voice channel to stop the music!"
+            "You have to be in a voice channel to skip the music!"
         );
     if (!serverQueue)
         return message.channel.send("There is no song that I could skip!");
