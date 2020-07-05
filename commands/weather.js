@@ -17,7 +17,7 @@ module.exports = {
         let url =
             "http://api.openweathermap.org/data/2.5/weather?zip=" +
             zipCode +
-            ",us&APPID=89788f412abb005a35dd260f88e56efd";
+            ",us" + "token";
 
         fetch(url, { method: "get" })
             .then((response) => {
