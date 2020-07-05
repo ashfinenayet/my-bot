@@ -1,12 +1,11 @@
 const Discord = require("discord.js")
 
 
-
+const config = require('./config.json');
 
 
 const ytdl = require("ytdl-core");
-require('dotenv').config();
-var token = process.env.token;
+
 const client = new Discord.Client()
 const fs = require('fs')
 client.commands = new Discord.Collection();
@@ -66,4 +65,4 @@ client.on("guildMemberAdd", (member) => {
 
 
 
-client.login(token);
+client.login(config.token)
