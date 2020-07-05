@@ -3,7 +3,7 @@ const randomPuppy = require('random-puppy');
 module.exports = {
     name: 'meme',
     description: "sends a random image from reddit!",
-    execute(msg){
+    execute(message){
         const subReddits = [
             "blursedimages",
             "cursedimages",
@@ -18,8 +18,8 @@ module.exports = {
                     .setImage(img)
                     .setTitle("from /r/" + randomSubreddit)
                     .setURL("https://reddit.com/r/" + randomSubreddit);
-                msg.channel.send(embed).then().catch((e) => msg.reply("Could not send image: " + e));
+                    message.channel.send(embed).then().catch((e) => message.reply("Could not send image: " + e));
             })
-            .catch((e) => msg.reply("Could not find an image" + e));
+            .catch((e) => message.reply("Could not find an image" + e));
     }
 }

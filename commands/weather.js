@@ -1,16 +1,16 @@
-const Discord = require("discord.js");
+
 const fetch = require("node-fetch");
 module.exports = {
     name: 'weather',
     description: "tells you the weather",
-    execute(msg){
-        let zipCode = msg.content.split(" ")[1];
+    execute(message){
+        let zipCode = message.content.split(" ")[1];
         if (
             zipCode === undefined ||
             zipCode.length != 5 ||
             parseInt(zipCode) === NaN
         ) {
-            return msg.channel
+            return message.channel
                 .send("The zipcode is incorrect. Try again with !weather (zipcode)")
                 .catch(console.error);
         }
@@ -24,7 +24,7 @@ module.exports = {
                 let parsedWeather = response
                     .json()
                     .then((x) => {
-                        return msg.channel.send(`
+                        return message.channel.send(`
             🎯The current weather
               🏡 Location: ${x.name}, ${x.sys.country}
               🌁 Forecast: ${x.weather[0].main}
@@ -44,7 +44,7 @@ module.exports = {
                     });
             })
             .catch((e) => {
-                msg.channel.send("There was an error retrieving weather data: " + e);
+                message.channel.send("There was an error retrieving weather data: " + e);
             });
     }
 }
