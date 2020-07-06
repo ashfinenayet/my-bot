@@ -18,7 +18,7 @@ module.exports = {
                     .setImage(img)
                     .setTitle("from /r/" + randomSubreddit)
                     .setURL("https://reddit.com/r/" + randomSubreddit);
-                    message.channel.send(embed).then().catch((e) => message.reply("Could not send image: " + e));
+                    message.channel.send(embed)
             })
             .catch((e) => message.reply("Could not find an image" + e));
     }
