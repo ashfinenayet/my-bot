@@ -1,7 +1,7 @@
 const Discord = require("discord.js")
+const { CommandoClient } = require("discord.js-commando")
 
-
-const config = require('./config.json');
+const {prefix, token} = require('./config.json');
 
 const ytdl = require("ytdl-core");
 
@@ -15,8 +15,35 @@ for (const file of commandFiles) {
 
     client.commands.set(command.name, command);
 }
-var servers = {};
-const queue = new Map();
+Structures.extend('Guild', Guild => {
+    class MusicGuild extends Guild {
+        constructor(client, data) {
+            super(client, data);
+            this.musicData = {
+                queue: [],
+                isPlaying: false,
+                volume: 1,
+                songDispatcher: null
+            };
+        }
+    }
+    return MusicGuild;
+});
+const client = new CommandoClient({
+    commandPrefix: prefix,
+    owner: '352293239014817793',
+    unknownCommandResponse: false
+});
+
+client.registry
+    .registerDefaultTypes()
+    .registerGroups([
+        ['music', 'Music Command Group']
+    ])
+    .registerDefaultGroups()
+    .registerDefaultCommands()
+    .registerCommandsIn(path.join(__dirname, 'commands'));
+
 client.on("ready", () => {
     client.user.setActivity("You", { type: "WATCHING" })
     console.log(`Logged in as ${client.user.tag}!`);
@@ -41,7 +68,7 @@ client.on("message", (message) => {
         client.commands.get('meme').execute(message);
     } else if (message.content.startsWith(`${prefix}weather`)) {
         client.commands.get('weather').execute(message);
-   
+
     }
 });
 
@@ -163,4 +190,4 @@ function play(guild, song) {
 }
 
 
-client.login(config.token)
+client.login(token)

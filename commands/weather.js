@@ -1,4 +1,3 @@
-
 const fetch = require("node-fetch");
 module.exports = {
     name: 'weather',
@@ -17,7 +16,7 @@ module.exports = {
         let url =
             "http://api.openweathermap.org/data/2.5/weather?zip=" +
             zipCode +
-            ",us" + "token";
+            ",us&APPID=89788f412abb005a35dd260f88e56efd";
 
         fetch(url, { method: "get" })
             .then((response) => {
