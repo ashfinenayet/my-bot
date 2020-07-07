@@ -1,8 +1,17 @@
 const Discord = require("discord.js");
 const randomPuppy = require('random-puppy');
-module.exports = {
-    name: 'meme',
-    description: "sends a random image from reddit!",
+const { Command } = require('discord.js-commando');
+module.exports = class MemeCommand extends Command {
+    constructor(client) {
+      super(client, {
+        name: 'meme',
+        aliases: ['meme', 'reddit'],
+        memberName: 'meme',
+        group: 'other',
+        description: 'shows an image from reddit',
+        guildOnly: true
+      });
+    }
     execute(message){
         const subReddits = [
             "blursedimages",
