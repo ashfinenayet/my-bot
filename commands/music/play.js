@@ -144,7 +144,7 @@ module.exports = class PlayCommand extends Command {
     }
     vidNameArr.push('exit');
     const embed = new MessageEmbed()
-      .setColor('#e9f931')
+      .setColor('RANDOM')
       .setTitle('Choose a song by commenting a number between 1 and 5')
       .addField('Song 1', vidNameArr[0])
       .addField('Song 2', vidNameArr[1])
@@ -239,7 +239,7 @@ module.exports = class PlayCommand extends Command {
             dispatcher.setVolume(message.guild.musicData.volume);
             const videoEmbed = new MessageEmbed()
               .setThumbnail(queue[0].thumbnail)
-              .setColor('#e9f931')
+              .setColor('RANDOM')
               .addField('Now Playing:', queue[0].title)
               .addField('Duration:', queue[0].duration);
             if (queue[1]) videoEmbed.addField('Next Song:', queue[1].title);
