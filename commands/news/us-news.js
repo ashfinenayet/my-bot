@@ -7,7 +7,7 @@ module.exports = class GlobalNewsCommand extends Command {
   constructor(client) {
     super(client, {
       name: 'us-news',
-      aliases: ['us-news', 'USA'],
+      aliases: ['us-news', 'usa'],
       group: 'news',
       memberName: 'us-news',
       description: 'Replies with the 5 latest US news headlines',
@@ -22,7 +22,7 @@ module.exports = class GlobalNewsCommand extends Command {
     // powered by NewsAPI.org
     try {
       const response = await fetch(
-        `https://newsapi.org/v2/top-headlines?country=us&apiKey=${newsAPI}`
+        `https://newsapi.org/v2/top-headlines?country=us&pageSize=5&apiKey=${newsAPI}`
       );
       const json = await response.json();
       const articleArr = json.articles;

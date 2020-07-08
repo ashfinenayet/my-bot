@@ -41,7 +41,7 @@ client.registry
     .registerDefaultTypes()
     .registerGroups([
         ['music', 'Music Command Group'],
-        ['misc', 'Miscellaneous Command Group'],
+        ['other', 'Miscellaneous Command Group'],
         ['admin', 'Administrative Command Group'],
         ['news', 'News Command Group']
     ])

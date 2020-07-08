@@ -7,7 +7,7 @@ module.exports = class BanCommand extends Command {
       name: 'ban',
       aliases: ['ban-member', 'ban-hammer'],
       memberName: 'ban',
-      group: 'guild',
+      group: 'admin',
       description: 'Bans a tagged member',
       guildOnly: true,
       userPermissions: ['MANAGE_MESSAGES', 'KICK_MEMBERS', 'BAN_MEMBERS'],
