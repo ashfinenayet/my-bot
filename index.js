@@ -64,23 +64,7 @@ client.on("ready", () => {
 //const serverQueue = queue.get(message.guild.id);
 
 
-var sayings = new Array();
-sayings[0] = "spaghetti";
-//insert as many saying as you like 
-client.on("message", (message) => {
-    if (!message.content.startsWith(prefix) || message.author.bot) return;
-    if (message.content.startsWith(prefix + "saying")) {
-        var i = Math.floor(Math.random() * sayings.length);
-        message.reply(sayings[i]);
 
-
-    } else if (message.content.startsWith(`${prefix}meme`)) {
-        client.commands.get('meme').execute(message);
-    } else if (message.content.startsWith(`${prefix}weather`)) {
-        client.commands.get('weather').execute(message);
-
-    }
-});
 
 client.on("guildMemberAdd", (member) => {
     // Send the message to a designated channel on a server:
