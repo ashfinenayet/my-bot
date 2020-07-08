@@ -9,7 +9,7 @@ module.exports = class WeatherCommand extends Command {
         aliases: ['weather'],
         memberName: 'weather',
         group: 'other',
-        description: 'shows the weather in your area',
+        description: 'shows the weather in your area. must provide a valid zipcode',
         guildOnly: true
       });
     }

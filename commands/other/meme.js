@@ -12,7 +12,7 @@ module.exports = class MemeCommand extends Command {
         guildOnly: true
       });
     }
-    execute(message){
+    run(message){
         const subReddits = [
             "blursedimages",
             "cursedimages",
