@@ -2,19 +2,22 @@ const { Command } = require('discord.js-commando');
 const Discord = require("discord.js");
 const db = require('quick.db');
 module.exports = class LeaderboardCommand extends Command {
-    constructor(client) {
-      super(client, {
-        name: 'leaderboard',
-        aliases: ['leader',],
-        memberName: 'leaderboard',
-        group: 'levels',
-        description: 'shows top ten in the server',
-        guildOnly: true
-      });
-    }
-    async run(client, message, args) {
-    
-      const embed = new Discord.MessageEmbed()
+  constructor(client) {
+    super(client, {
+      name: 'leaderboard',
+      aliases: ['leader',],
+      memberName: 'leaderboard',
+      group: 'levels',
+      description: 'shows top ten in the server',
+      guildOnly: true
+    });
+  }
+  async run(bot, message, args) {
+
+
+
+
+    const embed = new Discord.MessageEmbed()
       .setDescription(`Level Leaderboard: \`!leaderboard levels\` || Message Leaderboard: \`!leaderboard messages\``)
       .setColor("#FFFFFF")
   
@@ -52,7 +55,7 @@ module.exports = class LeaderboardCommand extends Command {
       .setColor("#FFFFFF")
   
       message.channel.send(embed)
+
     }
-  
-    }
-  };
+  }
+};
