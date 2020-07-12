@@ -1,8 +1,7 @@
 const { Command } = require('discord.js-commando');
 const Discord = require("discord.js");
 const client = new Discord.Client();
-const Enmap = require("enmap");
-  client.points = new Enmap({name: "points"});
+
 module.exports = class PointCommand extends Command {
     constructor(client) {
       super(client, {
@@ -52,3 +51,4 @@ if (user && user.tag) {
     }
   
     };
+    

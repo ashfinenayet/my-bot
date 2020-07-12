@@ -3,8 +3,6 @@ const { Structures } = require("discord.js");
 const { CommandoClient } = require("discord.js-commando");
 const path = require('path');
 const { prefix, token } = require('./config.json');
-const SQLite = require("better-sqlite3");
-const sql = new SQLite('./scores.sqlite');
 
 
 
@@ -62,10 +60,11 @@ client.on("ready", () => {
     client.user.setActivity("You", { type: "WATCHING" })
     console.log(`Logged in as ${client.user.tag}!`);
    
+
   });
 
-  const Enmap = require("enmap");
-  client.points = new Enmap({name: "points"});
+  
+  
 
 //const serverQueue = queue.get(message.guild.id);
 
