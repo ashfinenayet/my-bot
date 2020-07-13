@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const { Structures } = require("discord.js");
 const { CommandoClient } = require("discord.js-commando");
 const path = require('path');
-const { prefix} = require('./config.json');
+const { prefix, token } = require('./config.json');
 const db = require('quick.db');
 
 
@@ -113,4 +113,4 @@ client.on("guildMemberAdd", (member) => {
 
 
 
-client.login(process.env.token);
+client.login(token)
