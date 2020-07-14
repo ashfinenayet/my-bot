@@ -12,7 +12,7 @@ module.exports = class LeaderboardCommand extends Command {
       guildOnly: true
     });
   }
-  async run(bot, message, args) {
+  async run(message, args, bot,) {
 
 
 
