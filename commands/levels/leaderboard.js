@@ -12,50 +12,22 @@ module.exports = class LeaderboardCommand extends Command {
       guildOnly: true
     });
   }
-  async run(message, args, bot,) {
+  async run(client, message, args, tools) {
+    db.startswith(`guildMessages_${message.guild.id}`, { sort: '.data' }).then(resp => {
+      resp.length = 15;
 
 
-
-
-    const embed = new Discord.MessageEmbed()
-      .setDescription(`Level Leaderboard: \`!leaderboard levels\` || Message Leaderboard: \`!leaderboard messages\``)
-      .setColor("#FFFFFF")
-  
-  
-    if(!args[0]) return message.channel.send(embed)
-  
-      if (args[0] == 'levels') {
-      let level = db.startsWith(`level_${message.guild.id}`, { sort: '.data'})
-      let content = "";
-  
-      for (let i = 0; i < level.length; i++) {
-          let user = bot.users.get(level[i].ID.split('_')[2]).username
-  
-          content += `${i+1}. ${user} ~ ${level[i].data}\n`
-      
-        }
-  
-      const embed = new Discord.MessageEmbed()
-      .setDescription(`**${message.guild.name}'s Level Leaderboard**\n\n${content}`)
-      .setColor("#FFFFFF")
-  
-      message.channel.send(embed)
-    } else if(args[0] == 'messages') {
-      let messages = db.startsWith(`messages_${message.guild.id}`, { sort: '.data'})
-      let content = "";
-  
-      for (let i = 0; i < messages.length; i++) {
-          let user = client.users.get(messages[i].ID.split('_')[2]).username
-  
-          content += `${i+1}. ${user} ~ ${messages[i].data}\n`
+      let finalOutput = '**Leaderboard:**\n\n';
+      for (var i in resp) {
+        finalOutput += `{client.users.get(resp[i].ID.split('_')[2]).username} -- ${resp[i].data} messages`;
       }
-  
-      const embed = new Discord.MessageEmbed()
-      .setDescription(`**${message.guild.name}'s Messages Leaderboard**\n\n${content}`)
-      .setColor("#FFFFFF")
-  
-      message.channel.send(embed)
 
-    }
+    });
+
+
+    message.channel.send(finalOutput)
+
+
   }
-};
+}
+

@@ -3,7 +3,7 @@ const { Structures } = require("discord.js");
 const { CommandoClient } = require("discord.js-commando");
 const path = require('path');
 const { prefix, token } = require('./config.json');
-const db = require('quick.db');
+var db = require('quick.db')
 
 
 
