@@ -3,8 +3,8 @@ const { MessageEmbed } = require('discord.js');
 const Youtube = require('simple-youtube-api');
 const ytdl = require('ytdl-core');
 const path = require('path');
-
-const youtubeAPI = process.env.youtubeAPI;
+require('dotenv').config();
+const youtubeAPI = process.env.YOUTUBEAPI;
 const youtube = new Youtube(youtubeAPI);
 
 module.exports = class PlayCommand extends Command {
