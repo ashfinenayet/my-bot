@@ -1,7 +1,7 @@
 const fetch = require("node-fetch");
 const { Command } = require('discord.js-commando');
 const path = require('path');
-const { weatherAPI } = require('../../config.json');
+const weatherAPI = process.env.weatherAPI;
 module.exports = class WeatherCommand extends Command {
     constructor(client) {
       super(client, {

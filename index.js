@@ -2,11 +2,11 @@ const Discord = require("discord.js");
 const { Structures } = require("discord.js");
 const { CommandoClient } = require("discord.js-commando");
 const path = require('path');
-const { prefix, token } = require('./config.json');
+
 var db = require('quick.db')
-
-
-
+require('dotenv').config();
+const TOKEN = process.env.TOKEN;
+const prefix = process.env.prefix;
 const fs = require('fs')
 
 Structures.extend('Guild', function (Guild) {
@@ -113,4 +113,4 @@ client.on("guildMemberAdd", (member) => {
 
 
 
-client.login(token)
+client.login(TOKEN);
