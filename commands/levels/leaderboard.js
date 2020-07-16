@@ -15,7 +15,7 @@ module.exports = class LeaderboardCommand extends Command {
       
     }
     async run(message, bot, args) {
-        if(!message.content.startsWith('!'))return;  
+        
         const embed = new Discord.MessageEmbed()
         .setDescription(`Level Leaderboard: \`!leaderboard levels\` || Message Leaderboard: \`!leaderboard messages\``)
         .setColor("#FFFFFF")
