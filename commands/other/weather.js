@@ -51,7 +51,9 @@ module.exports = class WeatherCommand extends Command {
                             .addField('⬇️  Low Temperature:', `${Math.round(
                                 ((x.main.temp_min - 273.15) * 9) / 5 + 32
                             )} °F`)
-                            .setColor('#420626');
+                            .setColor('#F8C300')
+                            .setFooter('powered by weatherAPI')
+                            .setTimestamp();
                         return message.channel.send(
                             weatherEmbed);
                     })
