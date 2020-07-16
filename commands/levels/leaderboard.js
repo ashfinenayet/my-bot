@@ -23,7 +23,7 @@ module.exports = class LeaderboardCommand extends Command {
     
       if(!args[0]) return message.channel.send(embed)
     
-        if (args[0] === 'levels') {
+        if (args[0] == 'levels') {
         let level = db.startsWith(`level_${message.guild.id}`, { sort: '.data'})
         let content = "";
     
@@ -39,7 +39,7 @@ module.exports = class LeaderboardCommand extends Command {
         .setColor("#FFFFFF")
     
         message.channel.send(embed)
-      } else if(args[0] === 'messages') {
+      } else if(args[0] == 'messages') {
         let messages = db.startsWith(`messages_${message.guild.id}`, { sort: '.data'})
         let content = "";
     
