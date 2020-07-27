@@ -16,14 +16,14 @@ module.exports = class RouletteCommand extends Command {
   }
 
   run(message) {
-	let random = Math.random() * 100;
-	// console.log(random);
-	if (random < 100 / 6) {
-	  message.channel.send('🔥🔫 You died.');
-	  userToMute.addRole(muteRole);
-	  setTimeout(() => userToMute.removeRole(muteRole), muteTime);
-	} else {
-	  message.channel.send('🚬🔫 You\'re safe... For now...');
-	}
+    let random = Math.random() * 100;
+    // console.log(random);
+    if (random < 100 / 6) {
+      message.channel.send('🔥🔫 You died.');
+      userToMute.addRole(muteRole);
+      setTimeout(() => userToMute.removeRole(muteRole), muteTime);
+    } else {
+      message.channel.send('🚬🔫 You\'re safe... For now...');
+    }
   }
 };
