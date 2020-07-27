@@ -2,11 +2,16 @@ const Discord = require("discord.js");
 const { Structures } = require("discord.js");
 const { CommandoClient } = require("discord.js-commando");
 const path = require('path');
-
 var db = require('quick.db')
 require('dotenv').config();
 const TOKEN = process.env.TOKEN;
 const prefix = process.env.prefix;
+
+
+
+
+
+
 const fs = require('fs')
 
 Structures.extend('Guild', function (Guild) {
@@ -56,6 +61,7 @@ for (const file of commandFiles) {
 
   client.commands.set(command.name, command);
 }
+
 client.on("ready", () => {
   client.user.setActivity("You", { type: "WATCHING" })
   console.log(`Logged in as ${client.user.tag}!`);
